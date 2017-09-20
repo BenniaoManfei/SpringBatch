@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persons>
+	<person>
+		<id>1</id>
+		<address>湖北省阳新县</address>
+		<age>20</age>
+		<name>戴征淼</name>
+	</person>
+	<person>
+		<id>2</id>
+		<address>湖北省阳新县</address>
+		<age>22</age>
+		<name>戴征淼2</name>
+	</person>
+	<person>
+		<id>3</id>
+		<address>湖北省阳新县</address>
+		<age>23</age>
+		<name>戴征3</name>
+	</person>
+	<person>
+		<id>4</id>
+		<address>湖北省阳新县</address>
+		<age>22</age>
+		<name>戴2</name>
+	</person>
+	<person>
+		<id>5</id>
+		<address>湖北省阳新县</address>
+		<age>21</age>
+		<name>戴淼</name>
+	</person>
+</persons>

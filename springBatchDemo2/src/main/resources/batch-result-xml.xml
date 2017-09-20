@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wanggc>
+	<goods>
+		<isin>ISBN-SN100001</isin>
+		<quantity>1000</quantity>
+		<price>300.2</price>
+		<customer>ZhangSan-顾客</customer>
+		<buyDay>2017-09-19 07:53:34.201 UTC</buyDay>
+	</goods>
+	<goods>
+		<isin>ISBN-SN100002</isin>
+		<quantity>1001</quantity>
+		<price>300.2</price>
+		<customer>LiSi-顾客</customer>
+		<buyDay>2017-09-19 07:53:34.214 UTC</buyDay>
+	</goods>
+</wanggc>
