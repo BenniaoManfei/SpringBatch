@@ -43,7 +43,7 @@
 	
 	
 	<bean id="billCsvWriter" class="org.springframework.batch.item.file.FlatFileItemWriter">
-		<property name="resource" value="file:data/data-bill-2017-09-result.csv"></property>
+		<property name="resource" value="file:src/main/resources/data/data-bill-2017-09-result.csv"></property>
 		<property name="lineAggregator">
 			<bean class="org.springframework.batch.item.file.transform.DelimitedLineAggregator">
 				<property name="delimiter" value=","></property>

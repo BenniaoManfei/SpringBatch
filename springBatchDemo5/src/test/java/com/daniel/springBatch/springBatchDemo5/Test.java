@@ -3,6 +3,7 @@ package com.daniel.springBatch.springBatchDemo5;
 import org.springframework.batch.core.Job;
 import org.springframework.batch.core.JobExecution;
 import org.springframework.batch.core.JobParameters;
+import org.springframework.batch.core.JobParametersBuilder;
 import org.springframework.batch.core.JobParametersInvalidException;
 import org.springframework.batch.core.launch.JobLauncher;
 import org.springframework.batch.core.repository.JobExecutionAlreadyRunningException;
@@ -21,8 +22,10 @@ public class Test {
 		
 		JobLauncher jobLauncher = ctx.getBean(JobLauncher.class);
 		Job job = ctx.getBean(Job.class);
-		
-		JobExecution result = jobLauncher.run(job, new JobParameters());
+		JobParameters jobParameters = new JobParametersBuilder()
+//				.addString("outputFilePath", "data-bill-2017-09-result.csv")
+				.toJobParameters();
+		JobExecution result = jobLauncher.run(job, jobParameters);
 		System.err.println(result);
 	}
 
