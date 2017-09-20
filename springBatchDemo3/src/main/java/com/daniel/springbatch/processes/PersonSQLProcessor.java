@@ -31,6 +31,7 @@ public class PersonSQLProcessor implements ItemProcessor<Person, Person> {
 		} else {
 			Person person
 		}*/
+		person.setAge(person.getAge()+1);
 		System.err.println("<-----处理结束:"+person);
 		return person;
 	}

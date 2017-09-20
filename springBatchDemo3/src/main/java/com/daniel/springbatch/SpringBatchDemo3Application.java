@@ -13,6 +13,7 @@ import org.springframework.batch.core.launch.JobOperator;
 import org.springframework.batch.core.launch.support.SimpleJobLauncher;
 import org.springframework.batch.core.launch.support.SimpleJobOperator;
 import org.springframework.batch.core.repository.JobRepository;
+import org.springframework.batch.core.repository.support.JobRepositoryFactoryBean;
 import org.springframework.batch.core.repository.support.MapJobRepositoryFactoryBean;
 import org.springframework.batch.support.transaction.ResourcelessTransactionManager;
 import org.springframework.boot.SpringApplication;
@@ -32,6 +33,17 @@ public class SpringBatchDemo3Application {
 		SpringApplication.run(SpringBatchDemo3Application.class, args);
 	}
 
+	@Bean
+	@Primary
+	public DataSource dataSource() {
+		DruidDataSource dataSource = new DruidDataSource();
+		dataSource.setUrl("jdbc:mysql://127.0.0.1:3306/test?useUnicode=true&characterEncoding=utf-8");
+		dataSource.setUsername("root");
+		dataSource.setPassword("123456");
+		dataSource.setDriverClassName("com.mysql.jdbc.Driver");
+		return dataSource;
+	}
+	
 	// 事务管理器
 	@Bean(name = "transactionManager")
 	public PlatformTransactionManager transactionManager(DataSource dataSource) {
@@ -40,13 +52,16 @@ public class SpringBatchDemo3Application {
 
 	// 任务仓库
 	@Bean(name = "jobRepository")
-	public MapJobRepositoryFactoryBean jobRepository(PlatformTransactionManager transactionManager) {
-		return new MapJobRepositoryFactoryBean(transactionManager);
+	public JobRepositoryFactoryBean jobRepository(DataSource dataSource,PlatformTransactionManager transactionManager) {
+		JobRepositoryFactoryBean jobRepositoryFactoryBean = new JobRepositoryFactoryBean();
+		jobRepositoryFactoryBean.setDataSource(dataSource);
+		jobRepositoryFactoryBean.setTransactionManager(transactionManager);
+		return jobRepositoryFactoryBean;
 	}
 
 	// 任务加载器
 	@Bean(name = "jobLauncher")
-	public JobLauncher jobLauncher(MapJobRepositoryFactoryBean jobRepository) throws Exception {
+	public JobLauncher jobLauncher(JobRepositoryFactoryBean jobRepository) throws Exception {
 		SimpleJobLauncher jobLauncher = new SimpleJobLauncher();
 		jobLauncher.setJobRepository(jobRepository.getObject());
 		return jobLauncher;
@@ -63,7 +78,7 @@ public class SpringBatchDemo3Application {
 	}
 	
 	@Bean
-	public JobOperator jobOperator(JobRegistry jobLocator,JobLauncher jobLauncher,MapJobRepositoryFactoryBean jobRepository ,JobExplorer jobExplorer) throws Exception {
+	public JobOperator jobOperator(JobRegistry jobLocator,JobLauncher jobLauncher,JobRepositoryFactoryBean jobRepository ,JobExplorer jobExplorer) throws Exception {
 		SimpleJobOperator jobOperator = new SimpleJobOperator();
 		jobOperator.setJobRegistry(jobLocator);
 		jobOperator.setJobLauncher(jobLauncher);
@@ -72,16 +87,7 @@ public class SpringBatchDemo3Application {
 		return jobOperator;
 	}
 	
-	@Bean
-	@Primary
-	public DataSource dataSource() {
-		DruidDataSource dataSource = new DruidDataSource();
-		dataSource.setUrl("jdbc:mysql://127.0.0.1:3306/test?useUnicode=true&characterEncoding=utf-8");
-		dataSource.setUsername("root");
-		dataSource.setPassword("123456");
-		dataSource.setDriverClassName("com.mysql.jdbc.Driver");
-		return dataSource;
-	}
+
 	
 	@Bean
 	public JdbcTemplate jdbcTemplate(DataSource dataSource) {

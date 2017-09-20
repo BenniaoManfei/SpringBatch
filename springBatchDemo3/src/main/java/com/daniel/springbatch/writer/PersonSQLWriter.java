@@ -21,7 +21,8 @@ public class PersonSQLWriter implements ItemWriter<Person> {
 	@Override
 	public void write(List<? extends Person> items) throws Exception {
 		for(Person person: items) {
-			List<Person> persons = jdbcTemplate.query(GET_PRODUCT,new Object[]{person.getId()},new RowMapper<Person>(){
+			jdbcTemplate.update(UPDATE_PRODUCT, person.getAddress(),person.getAge(),person.getName(),person.getId());
+			/*List<Person> persons = jdbcTemplate.query(GET_PRODUCT,new Object[]{person.getId()},new RowMapper<Person>(){
 
 				@Override
 				public Person mapRow(ResultSet resultSet, int rowNum) throws SQLException {
@@ -37,7 +38,7 @@ public class PersonSQLWriter implements ItemWriter<Person> {
 				jdbcTemplate.update(INSERT_PRODUCT, person.getAddress(),person.getAge(),person.getName());
 			} else {
 				jdbcTemplate.update(UPDATE_PRODUCT, person.getAddress(),person.getAge(),person.getName(),person.getId());
-			}
+			}*/
 		}
 	}
 
