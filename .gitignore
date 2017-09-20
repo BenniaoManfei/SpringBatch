@@ -1,0 +1,20 @@
+/.settings/
+/target/
+*.apk
+*.ap_
+*.dex
+
+# Package Files #
+*.jar
+*.war
+*.ear
+
+
+# ignore eclipse files
+.project
+.classpath
+.settings
+.metadatass
+.DS_store
+
+*.class
