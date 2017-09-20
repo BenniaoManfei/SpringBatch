@@ -17,6 +17,7 @@ import org.springframework.batch.core.launch.JobLauncher;
 import org.springframework.batch.core.launch.support.RunIdIncrementer;
 import org.springframework.batch.core.repository.JobRepository;
 import org.springframework.batch.core.resource.ListPreparedStatementSetter;
+import org.springframework.batch.core.step.skip.SkipException;
 import org.springframework.batch.item.database.JdbcCursorItemReader;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.core.task.SimpleAsyncTaskExecutor;
@@ -25,10 +26,12 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.transaction.PlatformTransactionManager;
 
 import com.daniel.springbatch.batch.PersonProcessor2;
+import com.daniel.springbatch.batch.PersonSkipListener;
 import com.daniel.springbatch.batch.PersonWriter;
 import com.daniel.springbatch.exceptions.MyRetryException;
 import com.daniel.springbatch.exceptions.MySkipException;
 import com.daniel.springbatch.model.pojo.Person;
+import com.sun.org.apache.bcel.internal.generic.NEW;
 
 public class Main2 {
 
@@ -96,8 +99,9 @@ public class Main2 {
 //										.noRetry(MySQLDataException。c)//不重试
 										.retryLimit(2)//每条记录重试一次
 //										.listener(new RetryFailuireItemListener())设置监听
-										.skip(Exception.class)//跳过
+										.skip(MySkipException.class)//跳过
 										.skipLimit(500)
+										.listener(new PersonSkipListener() )
 										.taskExecutor(new SimpleAsyncTaskExecutor())//设置并发方式执行
 										.throttleLimit(1)//并发任务为10，默认为4
 										.build();
