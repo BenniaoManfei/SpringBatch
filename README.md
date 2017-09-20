@@ -8,4 +8,10 @@
 
 1. 基于SpringBoot构建(主入口为Main) ,完成了从文件中读取然后写入到数据库/从数据库中读取然后写入到文件
 
+### 2017年9月20日 --> springBatchDemo4 ###
+1. Retry
+2. SKIP
 
+### 2017年9月20日 --> springBatchDemo5 ###
+1. 基于XML配置构建
+2. 读取CSV然后存到CSV文件中
