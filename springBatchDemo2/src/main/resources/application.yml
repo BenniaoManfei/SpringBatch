@@ -1,0 +1,4 @@
+
+logging:
+  level:
+    com.daniel.springbatch: debug
