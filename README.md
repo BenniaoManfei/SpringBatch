@@ -12,6 +12,11 @@
 1. Retry
 2. SKIP
 
-### 2017年9月20日 --> springBatchDemo5 ###
+### springBatchDemo5 ###
 1. 基于XML配置构建
 2. 读取CSV然后存到CSV文件中
+3. 集成Mybatis以及C3P0数据源，(2017年9月21日)
+4. 读取Csv文件数据然后保存到mysql数据中(2017年9月21日)
+
+
+
