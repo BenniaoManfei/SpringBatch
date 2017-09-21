@@ -77,7 +77,6 @@ public class SpringBatchConfiger {
 		return jobOperator;
 	}
 	
-
 	
 	@Bean
 	public JdbcTemplate jdbcTemplate(DataSource dataSource) {
