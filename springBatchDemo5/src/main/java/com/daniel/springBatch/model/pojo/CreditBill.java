@@ -4,12 +4,20 @@ import java.io.Serializable;
 
 public class CreditBill implements Serializable {
 
+	private Long id;
+	
 	private String accountID = "";
 	private String name = "";
 	private double account = 0.0;
 	private String date = null;
 	private String address = "";
 	
+	public Long getId() {
+		return id;
+	}
+	public void setId(Long id) {
+		this.id = id;
+	}
 	public String getAccountID() {
 		return accountID;
 	}

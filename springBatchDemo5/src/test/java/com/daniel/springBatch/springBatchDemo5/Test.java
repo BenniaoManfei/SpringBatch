@@ -13,10 +13,19 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import com.daniel.springBatch.model.pojo.CreditBill;
 
+/**
+ * CSV文件的读取和写入
+ *
+ * @description
+ *
+ * @author DaiZM
+ * @date 2017年9月21日
+ *
+ */
 public class Test {
 
 	public static void main(String[] args) throws JobExecutionAlreadyRunningException, JobRestartException, JobInstanceAlreadyCompleteException, JobParametersInvalidException {
-		ClassPathXmlApplicationContext ctx = new ClassPathXmlApplicationContext("classpath:application.xml");
+		ClassPathXmlApplicationContext ctx = new ClassPathXmlApplicationContext("classpath:application-batch.xml");
 		CreditBill creditBill = ctx.getBean(CreditBill.class);
 		System.err.println(creditBill);
 		

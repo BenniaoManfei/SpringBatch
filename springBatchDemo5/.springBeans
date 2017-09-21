@@ -9,6 +9,7 @@
 	<configs>
 		<config>src/main/resources/application.xml</config>
 		<config>src/main/resources/application-batch.xml</config>
+		<config>src/main/resources/application-batch-mysql.xml</config>
 	</configs>
 	<autoconfigs>
 	</autoconfigs>
